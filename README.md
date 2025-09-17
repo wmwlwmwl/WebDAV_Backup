@@ -49,11 +49,13 @@ CONNECT_TIMEOUT=30                               # 连接超时时间（秒）
 
 # 非大文件上传参数
 SMALL_FILE_MAX_TIME=1800                         # 非大文件最大上传时间（秒），默认30分钟
-SMALL_FILE_RATE_LIMIT="2M"                        # 非大文件上传速度限制，格式为数字加单位（如1M=1MB/s），设为空字符串""表示无限制
+SMALL_FILE_RATE_LIMIT="2M"                        # 非大文件上传速度限制，格式为数字加单位（如2M=2MB/s），设为空字符串""表示无限制
+                                                   # Python版本目前不支持上传速度限制功能，相关参数会被忽略 
 
 # 大文件上传参数
 LARGE_FILE_MAX_TIME=7200                         # 大文件最大上传时间（秒），默认2小时
 LARGE_FILE_RATE_LIMIT="1M"                        # 大文件上传速度限制，格式为数字加单位（如1M=1MB/s），设为空字符串""表示无限制
+                                                   # Python版本目前不支持上传速度限制功能，相关参数会被忽略 
 
 # 完整性检测参数
 ENABLE_INTEGRITY_CHECK=true                      # 是否启用上传后的文件完整性检测（true/false）
@@ -188,6 +190,7 @@ EMAIL_SUBJECT_PREFIX="服务器"                     # 邮件主题前缀，最�
   ```bash
   chmod 600 webdav_backup.sh
   ```
+  **注意**：设置600权限后，将无法直接使用`./webdav_backup.sh`命令运行脚本，但可以使用`bash webdav_backup.sh`命令来执行
 
 ## 更新日志
 - 添加了HTTP 301状态码处理逻辑，解决目录已存在导致的错误
